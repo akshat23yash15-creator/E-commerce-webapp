@@ -28,20 +28,16 @@ const Home = () => {
 
   return (
     <>
-      {/* HERO BANNER (FULL PAGE) */}
       <section className="h-screen w-full bg-gray-300 flex items-center justify-center relative overflow-hidden">
 
-        {/* Product Image */}
         <img
           src={current.thumbnail}
           alt={current.title}
           className="max-h-[60vh] object-contain z-10"
         />
 
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/40" />
 
-        {/* Text */}
         <div className="absolute left-12 bottom-24 text-white z-20 max-w-md">
           <h1 className="text-4xl font-bold mb-3">
             {current.title}
@@ -67,7 +63,7 @@ const Home = () => {
           testimonials, anything here.
         </p>
       </section>
-    </>
+    </> 
   )
 }
 
