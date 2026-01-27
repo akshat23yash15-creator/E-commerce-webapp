@@ -38,7 +38,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="h-screen w-full bg-gray-300 flex items-center justify-center relative overflow-hidden">
+      <section className="h-screen w-full bg-gray-300 relative overflow-hidden flex items-center justify-center">
 
         <button
           onClick={() => setCurrentIndex(prev => prev - 1)}
@@ -49,13 +49,16 @@ const Home = () => {
               : "bg-white hover:bg-gray-200"}
           `}
         >
-          ←
+         ←
         </button>
 
         <img
+          key={current.id}
           src={current.thumbnail}
           alt={current.title}
-          className="max-h-[60vh] object-contain z-10"
+          className="
+            max-h-[60vh] object-contain z-10 transition-all duration-700 ease-in-out opacity-100 translate-x-0
+          "
         />
 
         <button
@@ -67,12 +70,19 @@ const Home = () => {
               : "bg-white hover:bg-gray-200"}
           `}
         >
-          →
+          → 
         </button>
 
         <div className="absolute inset-0 bg-black/40" />
 
-        <div className="absolute left-16 bottom-28 text-white z-20 max-w-md">
+        <div
+          key={`text-${current.id}`}
+          className="
+            absolute left-16 bottom-28 text-white z-20 max-w-md
+            transition-all duration-700 ease-in-out
+            opacity-100 translate-y-0
+          "
+        >
           <h1 className="text-4xl font-bold mb-3">
             {current.title}
           </h1>
