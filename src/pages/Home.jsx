@@ -6,7 +6,6 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [topRated, setTopRated] = useState([])
 
-  // Fetch products
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=100")
       .then(res => res.json())
@@ -21,7 +20,6 @@ const Home = () => {
       })
   }, [])
 
-  // Auto slide
   useEffect(() => {
     if (!products.length) return
 
@@ -40,10 +38,8 @@ const Home = () => {
 
   return (
     <>
-      {/* 🔥 HERO BANNER */}
       <section className="h-screen w-full bg-gray-300 flex items-center justify-center relative overflow-hidden">
 
-        {/* LEFT ARROW */}
         <button
           onClick={() => setCurrentIndex(prev => prev - 1)}
           disabled={currentIndex === 0}
@@ -56,14 +52,12 @@ const Home = () => {
           ←
         </button>
 
-        {/* IMAGE */}
         <img
           src={current.thumbnail}
           alt={current.title}
           className="max-h-[60vh] object-contain z-10"
         />
 
-        {/* RIGHT ARROW */}
         <button
           onClick={() => setCurrentIndex(prev => prev + 1)}
           disabled={currentIndex === products.length - 1}
@@ -76,10 +70,8 @@ const Home = () => {
           →
         </button>
 
-        {/* OVERLAY */}
         <div className="absolute inset-0 bg-black/40" />
 
-        {/* TEXT */}
         <div className="absolute left-16 bottom-28 text-white z-20 max-w-md">
           <h1 className="text-4xl font-bold mb-3">
             {current.title}
@@ -94,7 +86,6 @@ const Home = () => {
 
       </section>
 
-      {/* ⭐ TOP RATED GRID */}
       <section className="max-w-7xl mx-auto px-10 py-20">
         <h2 className="text-3xl font-bold mb-10">
           Top Rated Products
