@@ -1,21 +1,33 @@
 import { useEffect, useState } from "react"
+import ProductCard from "../components/ProductCard"
 
 const Home = () => {
   const [products, setProducts] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [topRated, setTopRated] = useState([])
 
+  // Fetch products
   useEffect(() => {
-    fetch("https://dummyjson.com/products?limit=8")
+    fetch("https://dummyjson.com/products?limit=100")
       .then(res => res.json())
-      .then(data => setProducts(data.products))
+      .then(data => {
+        setProducts(data.products)
+
+        const sorted = [...data.products]
+          .sort((a, b) => b.rating - a.rating)
+          .slice(0, 5)
+
+        setTopRated(sorted)
+      })
   }, [])
 
+  // Auto slide
   useEffect(() => {
     if (!products.length) return
 
     const interval = setInterval(() => {
       setCurrentIndex(prev =>
-        prev === products.length - 1 ? 0 : prev + 1
+        prev < products.length - 1 ? prev + 1 : prev
       )
     }, 3000)
 
@@ -28,42 +40,78 @@ const Home = () => {
 
   return (
     <>
+      {/* 🔥 HERO BANNER */}
       <section className="h-screen w-full bg-gray-300 flex items-center justify-center relative overflow-hidden">
 
+        {/* LEFT ARROW */}
+        <button
+          onClick={() => setCurrentIndex(prev => prev - 1)}
+          disabled={currentIndex === 0}
+          className={`absolute left-6 z-30 text-3xl px-4 py-2 rounded-full
+            ${currentIndex === 0
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-white hover:bg-gray-200"}
+          `}
+        >
+          ←
+        </button>
+
+        {/* IMAGE */}
         <img
           src={current.thumbnail}
           alt={current.title}
           className="max-h-[60vh] object-contain z-10"
         />
 
+        {/* RIGHT ARROW */}
+        <button
+          onClick={() => setCurrentIndex(prev => prev + 1)}
+          disabled={currentIndex === products.length - 1}
+          className={`absolute right-6 z-30 text-3xl px-4 py-2 rounded-full
+            ${currentIndex === products.length - 1
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-white hover:bg-gray-200"}
+          `}
+        >
+          →
+        </button>
+
+        {/* OVERLAY */}
         <div className="absolute inset-0 bg-black/40" />
 
-        <div className="absolute left-12 bottom-24 text-white z-20 max-w-md">
+        {/* TEXT */}
+        <div className="absolute left-16 bottom-28 text-white z-20 max-w-md">
           <h1 className="text-4xl font-bold mb-3">
             {current.title}
           </h1>
-          <p className="text-xl mb-2">
+          <p className="text-2xl mb-2">
             ₹ {current.price}
           </p>
-          <p className="text-yellow-400">
+          <p className="text-yellow-400 text-lg">
             ⭐ {current.rating}
           </p>
         </div>
 
       </section>
 
-      <section className="min-h-screen px-10 py-16 bg-white">
-        <h2 className="text-3xl font-bold mb-6">
-          Featured Collections
+      {/* ⭐ TOP RATED GRID */}
+      <section className="max-w-7xl mx-auto px-10 py-20">
+        <h2 className="text-3xl font-bold mb-10">
+          Top Rated Products
         </h2>
 
-        <p className="text-gray-600 max-w-xl">
-          This section proves your page is scrollable.
-          You can add categories, product grids, banners,
-          testimonials, anything here.
-        </p>
+        <div className="flex flex-wrap gap-10 justify-between">
+          {topRated.map(product => (
+            <div
+              key={product.id}
+              className="w-[22%] min-w-[260px]"
+            >
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
       </section>
-    </> 
+    </>
   )
 }
 
