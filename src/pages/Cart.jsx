@@ -1,7 +1,7 @@
 const Cart = () => {
   return (
     <div className="p-6 text-xl font-semibold">
-      Cart functionality coming soon 🚀
+      Cart functionality coming soon...
     </div>
   )
 }
