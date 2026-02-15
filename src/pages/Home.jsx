@@ -98,14 +98,14 @@ const Home = () => {
 
       <section className="max-w-7xl mx-auto px-10 py-20">
         <h2 className="text-3xl font-bold mb-10">
-          Top Rated Products
+          Best Sellers
         </h2>
 
         <div className="flex flex-wrap gap-10 justify-between">
           {topRated.map(product => (
             <div
               key={product.id}
-              className="w-[22%] min-w-[260px]"
+              className="w-[22%] min-w-65"
             >
               <ProductCard product={product} />
             </div>
