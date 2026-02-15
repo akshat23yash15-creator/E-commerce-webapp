@@ -24,7 +24,6 @@ const Cart = () => {
   return (
     <div className="max-w-6xl mx-auto p-8 grid md:grid-cols-3 gap-8">
 
-      {/* LEFT SIDE */}
       <div className="md:col-span-2 space-y-6">
         <h1 className="text-3xl font-bold mb-4">Your Cart</h1>
 
@@ -41,14 +40,12 @@ const Cart = () => {
             >
               <div className="flex items-center gap-5">
 
-                {/* Image */}
                 <img
                   src={item.thumbnail}
                   alt={item.title}
                   className="w-24 h-24 object-contain rounded-lg border"
                 />
 
-                {/* Info */}
                 <div>
                   <h3 className="font-semibold text-lg">
                     {item.title}
@@ -64,7 +61,6 @@ const Cart = () => {
                     </p>
                   </div>
 
-                  {/* Quantity Controls */}
                   <div className="flex items-center gap-3 mt-3">
 
                     <div className="flex items-center bg-gray-100 rounded-lg overflow-hidden">
@@ -92,7 +88,6 @@ const Cart = () => {
                       </button>
                     </div>
 
-                    {/* Delete Button */}
                     <button
                       onClick={() => removeFromCart(item.id)}
                       className="flex items-center gap-2 text-red-500 hover:text-red-600 transition"
@@ -105,7 +100,6 @@ const Cart = () => {
                 </div>
               </div>
 
-              {/* Item Total Right Side */}
               <div className="font-semibold text-lg">
                 ₹ {(item.finalPrice * item.quantity).toFixed(2)}
               </div>
@@ -114,7 +108,6 @@ const Cart = () => {
         </AnimatePresence>
       </div>
 
-      {/* RIGHT SIDE - Order Summary */}
       <div className="bg-white shadow-lg rounded-xl p-6 h-fit">
         <h2 className="text-xl font-semibold mb-4">
           Order Summary

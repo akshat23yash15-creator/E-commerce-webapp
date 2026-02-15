@@ -5,7 +5,6 @@ const CartContext = createContext()
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([])
 
-  // ✅ ADD TO CART
   const addToCart = (product) => {
     const discountedPrice =
       product.price -
@@ -32,7 +31,6 @@ export const CartProvider = ({ children }) => {
     })
   }
 
-  // ✅ UPDATE QUANTITY (NEW FUNCTION)
   const updateQuantity = (id, newQty) => {
     if (newQty < 1) return
 
@@ -45,14 +43,12 @@ export const CartProvider = ({ children }) => {
     )
   }
 
-  // ✅ REMOVE ITEM
   const removeFromCart = (id) => {
     setCartItems((prev) =>
       prev.filter((item) => item.id !== id)
     )
   }
 
-  // ✅ CLEAR CART
   const clearCart = () => {
     setCartItems([])
   }
@@ -63,7 +59,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         removeFromCart,
-        updateQuantity,   // 👈 IMPORTANT
+        updateQuantity,   
         clearCart,
       }}
     >
