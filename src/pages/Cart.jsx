@@ -1,8 +1,10 @@
 import { useCart } from "../context/CartContext"
 import { motion, AnimatePresence } from "framer-motion"
+import { FiTrash2 } from "react-icons/fi"
+import { HiPlus, HiMinus } from "react-icons/hi"
 
 const Cart = () => {
-  const { cartItems, removeFromCart } = useCart()
+  const { cartItems, removeFromCart, updateQuantity } = useCart()
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.finalPrice * item.quantity,
@@ -22,6 +24,7 @@ const Cart = () => {
   return (
     <div className="max-w-6xl mx-auto p-8 grid md:grid-cols-3 gap-8">
 
+      {/* LEFT SIDE */}
       <div className="md:col-span-2 space-y-6">
         <h1 className="text-3xl font-bold mb-4">Your Cart</h1>
 
@@ -34,22 +37,25 @@ const Cart = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center justify-between bg-white shadow-md rounded-xl p-4"
+              className="flex items-center justify-between bg-white shadow-md rounded-xl p-5"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-5">
+
+                {/* Image */}
                 <img
                   src={item.thumbnail}
                   alt={item.title}
-                  className="w-20 h-20 object-contain rounded-lg border"
+                  className="w-24 h-24 object-contain rounded-lg border"
                 />
 
+                {/* Info */}
                 <div>
                   <h3 className="font-semibold text-lg">
                     {item.title}
                   </h3>
 
-                  <div className="flex items-center gap-2 mt-1">
-                    <p className="text-red-600 font-bold">
+                  <div className="flex items-center gap-3 mt-2">
+                    <p className="text-blue-600 font-bold text-lg">
                       ₹ {item.finalPrice}
                     </p>
 
@@ -58,24 +64,57 @@ const Cart = () => {
                     </p>
                   </div>
 
-                  <p className="text-sm text-gray-500 mt-1">
-                    Quantity: {item.quantity}
-                  </p>
+                  {/* Quantity Controls */}
+                  <div className="flex items-center gap-3 mt-3">
+
+                    <div className="flex items-center bg-gray-100 rounded-lg overflow-hidden">
+
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity - 1)
+                        }
+                        className="px-3 py-1 hover:bg-gray-200 transition"
+                      >
+                        <HiMinus />
+                      </button>
+
+                      <span className="px-4 font-medium">
+                        {item.quantity}
+                      </span>
+
+                      <button
+                        onClick={() =>
+                          updateQuantity(item.id, item.quantity + 1)
+                        }
+                        className="px-3 py-1 hover:bg-gray-200 transition"
+                      >
+                        <HiPlus />
+                      </button>
+                    </div>
+
+                    {/* Delete Button */}
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="flex items-center gap-2 text-red-500 hover:text-red-600 transition"
+                    >
+                      <FiTrash2 />
+                      <span className="font-medium">Delete</span>
+                    </button>
+
+                  </div>
                 </div>
               </div>
 
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
-              >
-                Remove
-              </button>
+              {/* Item Total Right Side */}
+              <div className="font-semibold text-lg">
+                ₹ {(item.finalPrice * item.quantity).toFixed(2)}
+              </div>
             </motion.div>
           ))}
         </AnimatePresence>
       </div>
 
-  
+      {/* RIGHT SIDE - Order Summary */}
       <div className="bg-white shadow-lg rounded-xl p-6 h-fit">
         <h2 className="text-xl font-semibold mb-4">
           Order Summary
