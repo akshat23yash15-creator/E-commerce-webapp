@@ -8,6 +8,8 @@ import ProductDetails from "./pages/ProductDetails"
 import GlobalLoader from "./components/GlobalLoader"  
 import { useEffect } from "react"
 import { useLoader } from "./context/LoaderContext"
+import CategoriesPage from "./pages/CategoriesPage"
+
 
 
 function App() {
@@ -75,7 +77,8 @@ const { setLoading } = useLoader()
               </PageWrapper>
             }
           />
-
+          <Route path="/categories" element={
+            <PageWrapper><CategoriesPage /></PageWrapper>} />
         </Routes>
       </AnimatePresence>
     </>

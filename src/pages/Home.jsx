@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import ProductCard from "../components/ProductCard"
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 
 const Home = () => {
   const [products, setProducts] = useState([])
@@ -40,17 +42,19 @@ const Home = () => {
     <>
       <section className="h-screen w-full bg-gray-300 relative overflow-hidden flex items-center justify-center">
 
-        <button
-          onClick={() => setCurrentIndex(prev => prev - 1)}
-          disabled={currentIndex === 0}
-          className={`absolute left-6 z-30 text-3xl px-4 py-2 rounded-full
-            ${currentIndex === 0
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-white hover:bg-gray-200"}
-          `}
-        >
-         ←
-        </button>
+      <button
+  onClick={() => setCurrentIndex(prev => prev - 1)}
+  disabled={currentIndex === 0}
+  className={`absolute left-6 z-30 p-5 rounded-full
+    bg-white/20 backdrop-blur-lg border border-white/30
+    transition-all duration-300
+    ${currentIndex === 0
+      ? "opacity-40 cursor-not-allowed"
+      : "hover:bg-white/40 hover:scale-110"}
+  `}
+>
+  <FaChevronLeft className="text-xl text-white" />
+</button>
 
         <img
           key={current.id}
@@ -64,13 +68,16 @@ const Home = () => {
         <button
           onClick={() => setCurrentIndex(prev => prev + 1)}
           disabled={currentIndex === products.length - 1}
-          className={`absolute right-6 z-30 text-3xl px-4 py-2 rounded-full
-            ${currentIndex === products.length - 1
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-white hover:bg-gray-200"}
-          `}
+          className={`absolute right-6 z-30 p-5 rounded-full
+                               bg-white/50 backdrop-blur-lg border border-white/30
+  transition-all duration-300
+  ${currentIndex === products.length - 1
+    ? "opacity-40 cursor-not-allowed"
+    : "hover:bg-white/40 hover:scale-110"}
+`}
         >
-          → 
+            <FaChevronRight className="text-xl text-black" />
+
         </button>
 
         <div className="absolute inset-0 bg-black/40" />

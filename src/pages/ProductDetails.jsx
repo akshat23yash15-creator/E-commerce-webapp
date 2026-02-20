@@ -44,7 +44,7 @@ if (loading) {
     (product.price * product.discountPercentage) / 100
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8">
+    <div className="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8 pt-28">
 
       <div className="flex justify-start">
         <img
