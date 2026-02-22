@@ -95,7 +95,7 @@ const Navbar = () => {
               ${showSearch ? "w-64 opacity-100" : "w-0 opacity-0 px-0 border-0"}`}/>
 
             {searchResults.length > 0 && showSearch && (
-              <div className="absolute top-12 right-0 w-72 bg-white shadow-lg rounded-lg p-3 max-h-80 overflow-y-auto z-50">
+              <div className="absolute top-12 right-0 w-72 [scrollbar-width:none] bg-white shadow-lg rounded-lg p-3 max-h-80 overflow-y-auto z-50">
                 {searchResults.map((product) => (
                   <Link
                     key={product.id}
