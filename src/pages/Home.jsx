@@ -50,9 +50,7 @@ const Home = () => {
     transition-all duration-300
     ${currentIndex === 0
       ? "opacity-40 cursor-not-allowed"
-      : "hover:bg-white/40 hover:scale-110"}
-  `}
->
+      : "hover:bg-white/40 hover:scale-110"} `}>
   <FaChevronLeft className="text-xl text-white" />
 </button>
 
@@ -61,9 +59,7 @@ const Home = () => {
           src={current.thumbnail}
           alt={current.title}
           className="
-            max-h-[60vh] object-contain z-10 transition-all duration-700 ease-in-out opacity-100 translate-x-0
-          "
-        />
+            max-h-[60vh] object-contain z-10 transition-all duration-700 ease-in-out opacity-100 translate-x-0"/>
 
         <button
           onClick={() => setCurrentIndex(prev => prev + 1)}
@@ -73,9 +69,7 @@ const Home = () => {
   transition-all duration-300
   ${currentIndex === products.length - 1
     ? "opacity-40 cursor-not-allowed"
-    : "hover:bg-white/40 hover:scale-110"}
-`}
-        >
+    : "hover:bg-white/40 hover:scale-110"}`}>
             <FaChevronRight className="text-xl text-black" />
 
         </button>
@@ -87,9 +81,7 @@ const Home = () => {
           className="
             absolute left-16 bottom-28 text-white z-20 max-w-md
             transition-all duration-700 ease-in-out
-            opacity-100 translate-y-0
-          "
-        >
+            opacity-100 translate-y-0 ">
           <h1 className="text-4xl font-bold mb-3">
             {current.title}
           </h1>
@@ -112,8 +104,7 @@ const Home = () => {
           {topRated.map(product => (
             <div
               key={product.id}
-              className="w-[22%] min-w-65"
-            >
+              className="w-[22%] min-w-65">
               <ProductCard product={product} />
             </div>
           ))}
