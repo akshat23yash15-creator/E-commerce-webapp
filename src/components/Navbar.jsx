@@ -65,6 +65,11 @@ const Navbar = () => {
               Categories
             </Link>
           </li>
+           <li>
+            <Link to="/contact" className="hover:text-red-600 transition">
+              Contact Us
+            </Link>
+          </li>
         </ul>
 
         <div className="flex-1 flex justify-end items-center gap-6">

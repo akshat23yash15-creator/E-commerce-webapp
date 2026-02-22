@@ -100,11 +100,11 @@ const Home = () => {
           Best Sellers
         </h2>
 
-        <div className="flex flex-wrap gap-10 justify-between">
+        <div className="flex flex-wrap gap-10 justify-between ">
           {topRated.map(product => (
-            <div
+            <div 
               key={product.id}
-              className="w-[22%] min-w-65">
+              className="w-[22%] min-w-65 border rounded-lg">
               <ProductCard product={product} />
             </div>
           ))}

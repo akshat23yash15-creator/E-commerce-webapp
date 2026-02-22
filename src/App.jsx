@@ -9,6 +9,7 @@ import GlobalLoader from "./components/GlobalLoader"
 import { useEffect } from "react"
 import { useLoader } from "./context/LoaderContext"
 import CategoriesPage from "./pages/CategoriesPage"
+import Contact from "./pages/Contact"
 
 
 
@@ -79,8 +80,16 @@ const { setLoading } = useLoader()
           />
           <Route path="/categories" element={
             <PageWrapper><CategoriesPage /></PageWrapper>} />
+
+              <Route path="/contact" element={
+          <PageWrapper><Contact /></PageWrapper>
+        } />
         </Routes>
+
+      
+
       </AnimatePresence>
+      
     </>
   )
 }
