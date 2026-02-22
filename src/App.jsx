@@ -10,6 +10,8 @@ import { useEffect } from "react"
 import { useLoader } from "./context/LoaderContext"
 import CategoriesPage from "./pages/CategoriesPage"
 import Contact from "./pages/Contact"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 
 
@@ -89,8 +91,19 @@ const { setLoading } = useLoader()
       
 
       </AnimatePresence>
-      
-    </>
+<ToastContainer
+  position="bottom-left"
+  autoClose={2000}
+  newestOnTop
+  closeOnClick
+  pauseOnHover
+  draggable
+  theme="colored"
+  style={{
+    zIndex: 999999,
+    position: "fixed"
+  }}
+/>    </>
   )
 }
 

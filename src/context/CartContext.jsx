@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react"
+import { toast } from "react-toastify"
 
 const CartContext = createContext()
 
@@ -6,6 +7,23 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([])
 
   const addToCart = (product) => {
+    if (!product) return
+
+    const existing = cartItems.find((item) => item.id === product.id)
+
+    if (existing) {
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      )
+
+      toast.info("Quantity updated ")
+      return
+    }
+
     const discountedPrice =
       product.price -
       (product.price * product.discountPercentage) / 100
@@ -16,19 +34,9 @@ export const CartProvider = ({ children }) => {
       quantity: 1,
     }
 
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id)
+    setCartItems((prev) => [...prev, productWithDiscount])
 
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      }
-
-      return [...prev, productWithDiscount]
-    })
+    toast.success("Product added to cart ")
   }
 
   const updateQuantity = (id, newQty) => {
@@ -41,16 +49,21 @@ export const CartProvider = ({ children }) => {
           : item
       )
     )
+
+    toast.info("Quantity updated ")
   }
 
   const removeFromCart = (id) => {
     setCartItems((prev) =>
       prev.filter((item) => item.id !== id)
     )
+
+    toast.error("Product removed from cart ❌")
   }
 
   const clearCart = () => {
     setCartItems([])
+    toast.warn("Cart cleared ")
   }
 
   return (
@@ -58,8 +71,8 @@ export const CartProvider = ({ children }) => {
       value={{
         cartItems,
         addToCart,
+        updateQuantity,
         removeFromCart,
-        updateQuantity,   
         clearCart,
       }}
     >

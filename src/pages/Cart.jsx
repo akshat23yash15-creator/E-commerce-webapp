@@ -2,6 +2,7 @@ import { useCart } from "../context/CartContext"
 import { motion, AnimatePresence } from "framer-motion"
 import { FiTrash2 } from "react-icons/fi"
 import { HiPlus, HiMinus } from "react-icons/hi"
+import { toast } from "react-toastify"
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart()
@@ -67,7 +68,9 @@ const Cart = () => {
 
                       <button
                         onClick={() =>
+                          
                           updateQuantity(item.id, item.quantity - 1)
+                          
                         }
                         className="px-3 py-1 hover:bg-gray-200 transition"
                       >

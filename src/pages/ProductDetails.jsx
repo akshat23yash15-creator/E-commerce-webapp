@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useCart } from "../context/CartContext"
+// import { toast } from "react-toastify"
+
 
 const ProductDetails = () => {
   const { id } = useParams()
@@ -8,7 +10,7 @@ const ProductDetails = () => {
 
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
-
+ 
   useEffect(() => {
     setLoading(true)
 
@@ -39,9 +41,7 @@ if (loading) {
       </div>
     )
   }
-  const discountedPrice =
-    product.price -
-    (product.price * product.discountPercentage) / 100
+  const discountedPrice = product.price - (product.price * product.discountPercentage) / 100
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8 pt-28">
@@ -82,7 +82,7 @@ if (loading) {
         </p>
 
         <button
-          onClick={() => addToCart(product)}
+     onClick={() => {addToCart(product)}}
           className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition"
         >
           Add to Cart

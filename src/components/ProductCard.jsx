@@ -15,6 +15,10 @@ const ProductCard = ({ product }) => {
     e.stopPropagation()
     addToCart(product)
   }
+  
+  const discountedPrice =
+    product.price -
+    (product.price * product.discountPercentage) / 100
 
   return (
     <>
@@ -36,7 +40,7 @@ const ProductCard = ({ product }) => {
       </h3>
 
       <p className="text-red-600 font-bold text-lg mb-1">
-        ₹ {product.price}
+        ₹ {discountedPrice.toFixed(2)}
       </p>
 
       <p className="text-yellow-500 text-sm mb-4">
