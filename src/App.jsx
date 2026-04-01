@@ -12,6 +12,7 @@ import CategoriesPage from "./pages/CategoriesPage"
 import Contact from "./pages/Contact"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import Footer from "./components/Footer"
 
 
 
@@ -43,67 +44,74 @@ const { setLoading } = useLoader()
 
   return (
     <>
-      <Navbar />
-      <GlobalLoader />
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          
-          <Route path="/" element={
-              <PageWrapper>
-                <Home />
-              </PageWrapper>
-            }
-          />
+  <Navbar />
+  <GlobalLoader />
 
-          <Route path="/products"
-            element={
-              <PageWrapper>
-                <Products />
-              </PageWrapper>
-            }
-          />
-
-          <Route
-            path="/product/:id"
-            element={
-              <PageWrapper>
-                <ProductDetails />
-              </PageWrapper>
-            }
-          />
-
-          <Route
-            path="/cart"
-            element={
-              <PageWrapper>
-                <Cart />
-              </PageWrapper>
-            }
-          />
-          <Route path="/categories" element={
-            <PageWrapper><CategoriesPage /></PageWrapper>} />
-
-              <Route path="/contact" element={
-          <PageWrapper><Contact /></PageWrapper>
-        } />
-        </Routes>
-
+  <AnimatePresence mode="wait">
+    <Routes location={location} key={location.pathname}>
       
+      <Route path="/" element={
+          <PageWrapper>
+            <Home />
+          </PageWrapper>
+        }
+      />
 
-      </AnimatePresence>
-<ToastContainer
-  position="bottom-left"
-  autoClose={2000}
-  newestOnTop
-  closeOnClick
-  pauseOnHover
-  draggable
-  theme="colored"
-  style={{
-    zIndex: 999999,
-    position: "fixed"
-  }}
-/>    </>
+      <Route path="/products"
+        element={
+          <PageWrapper>
+            <Products />
+          </PageWrapper>
+        }
+      />
+
+      <Route
+        path="/product/:id"
+        element={
+          <PageWrapper>
+            <ProductDetails />
+          </PageWrapper>
+        }
+      />
+
+      <Route
+        path="/cart"
+        element={
+          <PageWrapper>
+            <Cart />
+          </PageWrapper>
+        }
+      />
+
+      <Route path="/categories" element={
+        <PageWrapper><CategoriesPage /></PageWrapper>} 
+      />
+
+      <Route path="/contact" element={
+        <PageWrapper><Contact /></PageWrapper>
+      } />
+      {/* <Route path="/footer" element={
+        <PageWrapper><Footer /></PageWrapper>
+      } /> */}
+      
+    </Routes>
+  </AnimatePresence>
+  <Footer />
+
+  <ToastContainer
+    position="bottom-left"
+    autoClose={2000}
+    newestOnTop
+    closeOnClick
+    pauseOnHover
+    draggable
+    theme="colored"
+    style={{
+      zIndex: 999999,
+      position: "fixed"
+    }}
+  />
+</>
   )
 }
 

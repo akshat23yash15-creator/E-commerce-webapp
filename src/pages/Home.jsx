@@ -43,7 +43,8 @@ const Home = () => {
 
   return (
     <>
-      <section className="h-screen w-full bg-gray-300 relative overflow-hidden flex items-center justify-center">
+      {/* BANNER SECTION - REVERTED TO ORIGINAL */}
+      <section className="group h-screen w-full bg-gray-300 relative overflow-hidden flex items-center justify-center">
 
         {/* Left Button */}
         <button
@@ -60,12 +61,12 @@ const Home = () => {
           <FaChevronLeft className="text-xl text-white" />
         </button>
 
-        {/* Image */}
+        {/* Image - Back to original logic */}
         <img
           key={current.id}
           src={current.thumbnail}
           alt={current.title}
-          className="max-h-[60vh] object-contain z-10"
+          className="max-h-[60vh] object-contain z-10 transition-transform duration-500 ease-out group-hover:scale-105"
         />
 
         {/* Right Button */}
@@ -83,7 +84,8 @@ const Home = () => {
           <FaChevronRight className="text-xl text-white" />
         </button>
 
-        <div className="absolute inset-0 bg-black/40" />
+        {/* FIXED OVERLAY */}
+        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
         <div className="absolute left-16 bottom-28 text-white z-20 max-w-md">
           <h1 className="text-4xl font-bold mb-3">
@@ -110,8 +112,9 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-10 py-20">
-        <h2 className="text-3xl font-bold mb-10">
+      {/* BEST SELLERS SECTION - PRODUCT CARD ZOOM LOGIC */}
+      <section className="max-full mx-auto px-10 py-20">
+        <h2 className="text-4xl font-bold mb-10">
           Best Sellers
         </h2>
 
@@ -119,8 +122,9 @@ const Home = () => {
           {topRated.map(product => (
             <div
               key={product.id}
-              className="w-[22%] min-w-[250px] border rounded-lg"
+              className="group w-[22%] min-w-[250px] overflow-hidden"
             >
+              {/* Note: In your ProductCard component, make sure the img tag has 'transition-transform duration-500 group-hover:scale-110' */}
               <ProductCard product={product} />
             </div>
           ))}
